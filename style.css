@@ -1,0 +1,112 @@
+body {
+  padding-top: 20px;
+  width: 650px;
+}
+
+h1 {
+  font-size: 45px;
+}
+
+h2 {
+  font-size: larger;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+small {
+  display: block;
+  padding-top: 10px;
+}
+
+a {
+  text-decoration: none;
+  transition: all 200ms ease-in-out;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.search-bar {
+  text-align: center;
+}
+
+.card-title-top {
+  margin-bottom: 0;
+}
+
+.prediction {
+  text-align: center;
+}
+
+.prediction-icon {
+  text-align: center;
+  font-size: 50px;
+  overflow: hidden;
+  padding-top: 23px;
+  width: 100px;
+  height: 100px;
+  border: 2px solid;
+  border-radius: 50%;
+}
+
+.today {
+  text-align: center;
+}
+
+.temp-units {
+  margin: 0;
+  font-size: small;
+}
+
+.day1 {
+  font-size: 90px;
+}
+
+.today-T {
+  font-size: 30px;
+}
+
+.day2 {
+  border-color: rgba(253, 192, 85);
+}
+
+.day3 {
+  border-color: rgba(253, 192, 85);
+}
+
+.day4 {
+  border-color: rgba(253, 192, 85);
+}
+
+.day5 {
+  border-color: rgba(67, 67, 252);
+}
+
+.day6 {
+  border-color: rgba(129, 129, 129);
+}
+
+.day7 {
+  border-color: rgba(129, 129, 129);
+}
+
+.sun {
+  color: rgb(255, 162, 0);
+}
+
+.cloud-sun {
+  color: rgb(253, 192, 85);
+}
+
+.cloud-sun-rain {
+  color: rgb(67, 67, 252);
+}
+
+.snowflake {
+  color: rgb(129, 129, 129);
+}
