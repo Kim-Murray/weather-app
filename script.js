@@ -18,8 +18,10 @@ function weather(response) {
   console.log(response);
   let newCity = response.data.name;
   let displayCity = document.querySelector("h1");
-  if (newCity.length > 7) {
+  if (newCity.length > 7 && newCity.length <= 10) {
     displayCity.innerHTML = `<font size="6.5">${newCity}</font>`;
+  } else if (newCity.length > 10) {
+    displayCity.innerHTML = `<font size="5.5">${newCity}</font>`;
   } else {
     displayCity.innerHTML = `${newCity}`;
   }
@@ -60,8 +62,23 @@ function tidyString(string) {
 function city(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#location").value;
-  cityInput = tidyString(cityInput);
-  findCity(cityInput);
+  if (cityInput !== "") {
+    cityInput = tidyString(cityInput);
+    findCity(cityInput);
+  }
+}
+
+function displayLocalWeather(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+
+  let apiKey = "8592322f23646cdf44bbdae2ec743ec1";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=`;
+  axios.get(`${apiUrl}${apiKey}`).then(weather);
+}
+
+function getCoordinates() {
+  navigator.geolocation.getCurrentPosition(displayLocalWeather);
 }
 
 days = [
@@ -78,4 +95,7 @@ let currentDayAndTime = document.querySelector("#today");
 currentDayAndTime.innerHTML = formatDateTime(days);
 
 let searchCity = document.querySelector("#search-city");
-let newCity = searchCity.addEventListener("submit", city);
+searchCity.addEventListener("submit", city);
+
+let localWeather = document.querySelector("#local-weather");
+localWeather.addEventListener("click", getCoordinates);
