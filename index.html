@@ -14,6 +14,7 @@
       src="https://kit.fontawesome.com/038d14de4a.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <title>What's the T?</title>
   </head>
@@ -47,20 +48,16 @@
                 <h1>London</h1>
                 <h2 id="today">Monday 16:12</h2>
               </h3>
-              <p class="temp-units">
-                <a href="#" id="temp-celsius">°C</a> /
-                <a href="#" id="temp-fahr">°F</a>
-              </p>
               <p class="card-text">
-                <span class="today-T">20°C</span>
+                <span class="today-T" id="current-T">20°C</span>
                 <br />
-                Sunny!
+                <span id="description">Sunny!</span>
               </p>
               <i class="fas fa-sun day1 sun"></i>
-              <small>
-                Wind: 7km/hr
+              <small id="humidity-wind">
+                Wind: 7 km/hr
                 <br />
-                Precipitation: 68%
+                Humidity: 68%
               </small>
             </div>
           </div>

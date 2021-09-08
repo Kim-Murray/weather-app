@@ -14,6 +14,39 @@ function formatDateTime(days) {
   return `${day} ${hour}:${minutes}`;
 }
 
+function weather(response) {
+  console.log(response);
+  let newCity = response.data.name;
+  let displayCity = document.querySelector("h1");
+  if (newCity.length > 7) {
+    displayCity.innerHTML = `<font size="6.5">${newCity}</font>`;
+  } else {
+    displayCity.innerHTML = `${newCity}`;
+  }
+
+  let currentTemp = Math.round(response.data.main.temp);
+  let displayCurrentTemp = document.querySelector("#current-T");
+  displayCurrentTemp.innerHTML = `${currentTemp}°C`;
+
+  let description = response.data.weather[0].description;
+  description = tidyString(description);
+  let descriptionPage = document.querySelector("#description");
+  descriptionPage.innerHTML = description;
+
+  let humidity = Math.round(response.data.main.humidity);
+  let wind = Math.round(response.data.wind.speed);
+  let humidityWind = document.querySelector("#humidity-wind");
+  humidityWind.innerHTML = `Wind: ${wind} km/hr<br />Humidity: ${humidity}%`;
+}
+
+function findCity(city) {
+  let apiKey = "8592322f23646cdf44bbdae2ec743ec1";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=`;
+  console.log(city);
+
+  axios.get(`${apiUrl}${apiKey}`).then(weather);
+}
+
 function tidyString(string) {
   string = string.trim();
   string = string.toLowerCase();
@@ -24,30 +57,11 @@ function tidyString(string) {
   return string;
 }
 
-function formatCity(city) {
-  newCity = document.querySelector("h1");
-  if (city.length > 7) {
-    newCity.innerHTML = `<font size="6.5">${city}</font>`;
-  } else newCity.innerHTML = `${city}`;
-}
-
 function city(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#location").value;
   cityInput = tidyString(cityInput);
-  formatCity(cityInput);
-}
-
-function changeTemptoC(event) {
-  event.preventDefault();
-  let displayTemp = document.querySelector(".today-T");
-  displayTemp.innerHTML = "20°C";
-}
-
-function changeTemptoF(event) {
-  event.preventDefault();
-  let displayTemp = document.querySelector(".today-T");
-  displayTemp.innerHTML = "68°F";
+  findCity(cityInput);
 }
 
 days = [
@@ -64,10 +78,4 @@ let currentDayAndTime = document.querySelector("#today");
 currentDayAndTime.innerHTML = formatDateTime(days);
 
 let searchCity = document.querySelector("#search-city");
-searchCity.addEventListener("submit", city);
-
-let tempCelsius = document.querySelector("#temp-celsius");
-tempCelsius.addEventListener("click", changeTemptoC);
-
-let tempFahr = document.querySelector("#temp-fahr");
-tempFahr.addEventListener("click", changeTemptoF);
+let newCity = searchCity.addEventListener("submit", city);
