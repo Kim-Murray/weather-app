@@ -36,6 +36,10 @@ button {
   margin: 0 auto;
 }
 
+hr {
+  margin-bottom: 2px;
+}
+
 .search-bar {
   text-align: center;
 }
@@ -114,4 +118,8 @@ button {
 
 .snowflake {
   color: rgb(129, 129, 129);
+}
+
+.open-source {
+  padding-top: 0;
 }
