@@ -34,6 +34,12 @@ function weather(response) {
   let descriptionPage = document.querySelector("#description");
   descriptionPage.innerHTML = description;
 
+  let weatherIcon = response.data.weather[0].icon;
+  let iconURL = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+  let todayIcon = document.querySelector("#today-icon");
+  todayIcon.setAttribute("src", iconURL);
+  todayIcon.setAttribute("alt", description);
+
   let humidity = Math.round(response.data.main.humidity);
   let wind = Math.round(response.data.wind.speed);
   let humidityWind = document.querySelector("#humidity-wind");
