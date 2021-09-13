@@ -10,13 +10,11 @@ h2 {
 
 h4 {
   font-size: smaller;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 small {
   display: block;
-  padding-top: 10px;
-  font-size: 10px;
 }
 
 a {
@@ -54,12 +52,23 @@ button {
   margin-bottom: 0;
 }
 
+#humidity-wind {
+  padding-top: 10px;
+  font-size: 12px;
+}
+
 .prediction-wrapper {
   padding-top: 8px;
 }
 
 .prediction {
   text-align: center;
+}
+
+.future-day {
+  font-size: 14px;
+  font-weight: 400;
+  padding-bottom: 4px;
 }
 
 .prediction-icon {
@@ -76,11 +85,6 @@ button {
 .today {
   text-align: center;
   padding: 10px 5px;
-}
-
-.future-day {
-  font-size: 14px;
-  padding-bottom: 4px;
 }
 
 .temp-units {
