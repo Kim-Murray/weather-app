@@ -4,16 +4,16 @@ body {
 }
 
 h1 {
-  font-size: 45px;
+  font-size: 25px;
 }
 
 h2 {
-  font-size: larger;
-  font-weight: 700;
+  font-size: smaller;
+  font-weight: 500;
 }
 
 h4 {
-  font-size: 16px;
+  font-size: smaller;
   font-weight: bold;
 }
 
@@ -36,8 +36,14 @@ button {
   margin: 0 auto;
 }
 
-hr {
-  margin-bottom: 2px;
+.container {
+  min-width: 700px;
+}
+
+.weather-app {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 10px 5px;
 }
 
 .search-bar {
@@ -77,7 +83,7 @@ hr {
 }
 
 .today-T {
-  font-size: 30px;
+  font-size: 45px;
 }
 
 .day2 {

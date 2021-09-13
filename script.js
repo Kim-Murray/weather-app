@@ -18,13 +18,12 @@ function weather(response) {
   console.log(response);
   let newCity = response.data.name;
   let displayCity = document.querySelector("h1");
-  if (newCity.length > 7 && newCity.length <= 10) {
-    displayCity.innerHTML = `<font size="6.5">${newCity}</font>`;
-  } else if (newCity.length > 10) {
-    displayCity.innerHTML = `<font size="5.5">${newCity}</font>`;
-  } else {
-    displayCity.innerHTML = `${newCity}`;
-  }
+  displayCity.innerHTML = `${newCity}`;
+  // if (newCity.length > 7 && newCity.length <= 10) {
+  //   displayCity.innerHTML = `<font size="6.5">${newCity}</font>`;
+  // } else if (newCity.length > 10) {
+  //   displayCity.innerHTML = `<font size="5.5">${newCity}</font>`;
+  // } else {}
 
   let currentTemp = Math.round(response.data.main.temp);
   let displayCurrentTemp = document.querySelector("#current-T");
