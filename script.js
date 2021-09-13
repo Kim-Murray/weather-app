@@ -38,6 +38,10 @@ function weather(response) {
   let wind = Math.round(response.data.wind.speed);
   let humidityWind = document.querySelector("#humidity-wind");
   humidityWind.innerHTML = `Wind: ${wind} km/hr<br />Humidity: ${humidity}%`;
+
+  let time = response.data.dt * 1000;
+  let localDayAndTime = document.querySelector("#current-day-time");
+  localDayAndTime.innerHTML = formatDateTime(days);
 }
 
 function findCity(city) {
@@ -89,9 +93,6 @@ days = [
   "Friday",
   "Saturday",
 ];
-
-let currentDayAndTime = document.querySelector("#today");
-currentDayAndTime.innerHTML = formatDateTime(days);
 
 let searchCity = document.querySelector("#search-city");
 searchCity.addEventListener("submit", city);
