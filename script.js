@@ -1,3 +1,5 @@
+//Formatting Date and Time
+
 function addZero(time) {
   if (time < 10) {
     return "0" + time;
@@ -14,18 +16,17 @@ function formatDateTime(days) {
   return `${day} ${hour}:${minutes}`;
 }
 
+//Collecting weather data from openweathermap.org API
+
 function weather(response) {
   console.log(response);
   let newCity = response.data.name;
   let displayCity = document.querySelector("h1");
   displayCity.innerHTML = `${newCity}`;
-  // if (newCity.length > 7 && newCity.length <= 10) {
-  //   displayCity.innerHTML = `<font size="6.5">${newCity}</font>`;
-  // } else if (newCity.length > 10) {
-  //   displayCity.innerHTML = `<font size="5.5">${newCity}</font>`;
-  // } else {}
 
-  let currentTemp = Math.round(response.data.main.temp);
+  celsiusTemp = response.data.main.temp;
+
+  let currentTemp = Math.round(celsiusTemp);
   let displayCurrentTemp = document.querySelector("#current-T");
   displayCurrentTemp.innerHTML = `${currentTemp}°C`;
 
@@ -68,6 +69,8 @@ function tidyString(string) {
   return string;
 }
 
+//Searching input city from search bar after tidying string
+
 function city(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#location").value;
@@ -76,6 +79,8 @@ function city(event) {
     findCity(cityInput);
   }
 }
+
+//Searching user local weather
 
 function displayLocalWeather(position) {
   let lat = position.coords.latitude;
@@ -90,6 +95,25 @@ function getCoordinates() {
   navigator.geolocation.getCurrentPosition(displayLocalWeather);
 }
 
+//Unit conversion
+
+function changeTemptoC(event) {
+  event.preventDefault();
+  let displayTemp = document.querySelector(".today-T");
+  tempCelsius.classList.add("active");
+  tempFahr.classList.remove("active");
+  displayTemp.innerHTML = `${Math.round(celsiusTemp)}°C`;
+}
+
+function changeTemptoF(event) {
+  event.preventDefault();
+  let fahrTemp = (celsiusTemp * 9) / 5 + 32;
+  tempFahr.classList.add("active");
+  tempCelsius.classList.remove("active");
+  let displayTemp = document.querySelector(".today-T");
+  displayTemp.innerHTML = `${Math.round(fahrTemp)}°F`;
+}
+
 days = [
   "Sunday",
   "Monday",
@@ -100,8 +124,24 @@ days = [
   "Saturday",
 ];
 
+//Creating global celsius value
+
+let celsiusTemp = null;
+
+//Listening for user activity on page
+
 let searchCity = document.querySelector("#search-city");
 searchCity.addEventListener("submit", city);
 
 let localWeather = document.querySelector("#local-weather");
 localWeather.addEventListener("click", getCoordinates);
+
+let tempCelsius = document.querySelector("#temp-celsius");
+tempCelsius.addEventListener("click", changeTemptoC);
+
+let tempFahr = document.querySelector("#temp-fahr");
+tempFahr.addEventListener("click", changeTemptoF);
+
+//Default display city
+
+findCity("London");

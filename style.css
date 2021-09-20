@@ -1,3 +1,5 @@
+/*headers and fonts*/
+
 h1 {
   font-size: 25px;
 }
@@ -17,6 +19,8 @@ small {
   display: block;
 }
 
+/*links and buttons*/
+
 a {
   text-decoration: none;
   transition: all 200ms ease-in-out;
@@ -31,6 +35,8 @@ button {
   margin: 0 auto;
 }
 
+/*Container settings for weather app*/
+
 .container {
   max-width: 700px;
 }
@@ -44,18 +50,52 @@ button {
   margin-top: 20px;
 }
 
+/*Search bar*/
+
 .search-bar {
   text-align: center;
 }
 
+/*Current Weather Section*/
+
+.today-card {
+  text-align: center;
+  padding: 10px 5px;
+}
 .card-title-top {
   margin-bottom: 0;
 }
 
+.today-T-text {
+  margin: 0;
+}
+
+.today-T {
+  font-size: 40px;
+}
+
 #humidity-wind {
-  padding-top: 10px;
   font-size: 12px;
 }
+
+/*Unit Conversion*/
+
+.temp-units {
+  margin: 0;
+  font-size: small;
+}
+
+.active {
+  color: black;
+  cursor: default;
+}
+
+.active:hover {
+  color: black;
+  text-decoration: none;
+}
+
+/*Prediction Section*/
 
 .prediction-wrapper {
   padding-top: 8px;
@@ -80,20 +120,6 @@ button {
   height: 100px;
   border: 2px solid;
   border-radius: 50%;
-}
-
-.today {
-  text-align: center;
-  padding: 10px 5px;
-}
-
-.temp-units {
-  margin: 0;
-  font-size: small;
-}
-
-.today-T {
-  font-size: 45px;
 }
 
 .day2 {
@@ -136,6 +162,7 @@ button {
   color: rgb(129, 129, 129);
 }
 
+/*Footer Section*/
 .open-source {
   padding-top: 0;
 }
