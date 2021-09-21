@@ -16,6 +16,60 @@ function formatDateTime(days) {
   return `${day} ${hour}:${minutes}`;
 }
 
+function displayDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  return days[date.getDay()];
+}
+
+function displayForecast(response) {
+  let firstRowForecast = document.querySelector("#forecast");
+
+  let forecast = ``;
+  forecastDays = response.data.daily;
+  console.log(forecastDays);
+  maxTemps = [];
+  forecastDays.forEach(function (day, index) {
+    if (index > 0 && index < 7) {
+      maxTemp = Math.round(day.temp.max);
+      minTemp = Math.round(day.temp.min);
+      forecast += `              
+      <div class="col prediction">            
+      <h2 class="future-day">${displayDay(day.dt)}</h2>
+      <img class="prediction-icon" src="http://openweathermap.org/img/wn/${
+        day.weather[0].icon
+      }@2x.png" alt="Weather icon"/>
+      <h4>${minTemp}°C/${maxTemp}°C</h4>
+      </div>
+  `;
+      maxTemps.push(maxTemp);
+    }
+  });
+
+  forecastHTML = forecast + `</div>`;
+  firstRowForecast.innerHTML = forecastHTML;
+
+  let icons = document.querySelectorAll(".prediction-icon");
+  console.log(icons);
+  console.log(maxTemps[0]);
+  icons.forEach((icon, index) => {
+    maxTemp = maxTemps[index];
+    if (maxTemp >= 20) {
+      icon.classList.add("warm");
+    } else if (maxTemp < 20 && maxTemp > 10) {
+      icon.classList.add("mild");
+    } else {
+      icon.classList.add("cold");
+    }
+  });
+}
+
+function getForecast(longitude, latitude) {
+  let apiKey = "8592322f23646cdf44bbdae2ec743ec1";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+
+  axios.get(`${apiUrl}`).then(displayForecast);
+}
+
 //Collecting weather data from openweathermap.org API
 
 function weather(response) {
@@ -49,6 +103,11 @@ function weather(response) {
   let time = response.data.dt * 1000;
   let localDayAndTime = document.querySelector("#current-day-time");
   localDayAndTime.innerHTML = formatDateTime(days);
+
+  longitude = response.data.coord.lon;
+  latitude = response.data.coord.lat;
+
+  getForecast(longitude, latitude);
 }
 
 function findCity(city) {

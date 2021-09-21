@@ -115,51 +115,25 @@ button {
   text-align: center;
   font-size: 50px;
   overflow: hidden;
-  padding-top: 23px;
   width: 100px;
   height: 100px;
   border: 2px solid;
   border-radius: 50%;
 }
 
-.day2 {
+.warm {
   border-color: rgba(253, 192, 85);
+  background-color: rgba(253, 192, 85, 0.7);
 }
 
-.day3 {
-  border-color: rgba(253, 192, 85);
-}
-
-.day4 {
-  border-color: rgba(253, 192, 85);
-}
-
-.day5 {
-  border-color: rgba(67, 67, 252);
-}
-
-.day6 {
+.mild {
   border-color: rgba(129, 129, 129);
+  background-color: rgba(129, 129, 129, 0.7);
 }
 
-.day7 {
-  border-color: rgba(129, 129, 129);
-}
-
-.sun {
-  color: rgb(255, 162, 0);
-}
-
-.cloud-sun {
-  color: rgb(253, 192, 85);
-}
-
-.cloud-sun-rain {
-  color: rgb(67, 67, 252);
-}
-
-.snowflake {
-  color: rgb(129, 129, 129);
+.cold {
+  border-color: rgb(63, 114, 172);
+  background-color: rgb(63, 114, 172, 0.7);
 }
 
 /*Footer Section*/
