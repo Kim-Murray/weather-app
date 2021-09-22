@@ -16,6 +16,8 @@ function formatDateTime(days) {
   return `${day} ${hour}:${minutes}`;
 }
 
+//Displaying Forcast
+
 function displayDay(timestamp) {
   let date = new Date(timestamp * 1000);
   return days[date.getDay()];
@@ -24,10 +26,11 @@ function displayDay(timestamp) {
 function displayForecast(response) {
   let firstRowForecast = document.querySelector("#forecast");
 
-  let forecast = ``;
   forecastDays = response.data.daily;
-  console.log(forecastDays);
   maxTemps = [];
+
+  let forecast = ``;
+
   forecastDays.forEach(function (day, index) {
     if (index < 6) {
       maxTemp = Math.round(day.temp.max);
@@ -37,8 +40,8 @@ function displayForecast(response) {
       <h2 class="future-day">${displayDay(day.dt)}</h2>
       <img class="prediction-icon" src="http://openweathermap.org/img/wn/${
         day.weather[0].icon
-      }@2x.png" alt="Weather icon"/>
-      <h4><span class="min-temp">${minTemp}°C</span>/${maxTemp}°C</h4>
+      }@2x.png" alt="${day.weather[0].description}"/>
+      <h4><span class="min-temp">${minTemp}°C/</span>${maxTemp}°C</h4>
       </div>
   `;
       maxTemps.push(maxTemp);
@@ -72,7 +75,6 @@ function getForecast(longitude, latitude) {
 //Collecting weather data from openweathermap.org API
 
 function weather(response) {
-  console.log(response);
   let newCity = response.data.name;
   let displayCity = document.querySelector("h1");
   displayCity.innerHTML = `${newCity}`;
@@ -99,7 +101,6 @@ function weather(response) {
   let humidityWind = document.querySelector("#humidity-wind");
   humidityWind.innerHTML = `Wind: ${wind} m/s<br />Humidity: ${humidity}%`;
 
-  let time = response.data.dt * 1000;
   let localDayAndTime = document.querySelector("#current-day-time");
   localDayAndTime.innerHTML = formatDateTime(days);
 
@@ -109,7 +110,6 @@ function weather(response) {
   if (currentTemp >= 20) {
     todayIconClass.classList.add("warm");
   } else if (currentTemp < 20 && currentTemp > 10) {
-    console.log("mild");
     todayIconClass.classList.add("mild");
   } else {
     todayIconClass.classList.add("cold");
@@ -124,7 +124,6 @@ function weather(response) {
 function findCity(city) {
   let apiKey = "8592322f23646cdf44bbdae2ec743ec1";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=`;
-  console.log(city);
 
   axios.get(`${apiUrl}${apiKey}`).then(weather);
 }
@@ -164,6 +163,8 @@ function displayLocalWeather(position) {
 function getCoordinates() {
   navigator.geolocation.getCurrentPosition(displayLocalWeather);
 }
+
+//Global list of days to be used in various functions
 
 days = [
   "Sunday",
