@@ -82,29 +82,13 @@ button {
 
 .today-icon {
   text-align: center;
+  margin: 10px;
   font-size: 50px;
   overflow: hidden;
   width: 100px;
   height: 100px;
   border: 2px solid;
   border-radius: 50%;
-}
-
-/*Unit Conversion*/
-
-.temp-units {
-  margin: 0;
-  font-size: small;
-}
-
-.active {
-  color: black;
-  cursor: default;
-}
-
-.active:hover {
-  color: black;
-  text-decoration: none;
 }
 
 /*Prediction Section*/
@@ -126,12 +110,17 @@ button {
 
 .prediction-icon {
   text-align: center;
+  margin: 4px;
   font-size: 50px;
   overflow: hidden;
   width: 100px;
   height: 100px;
   border: 2px solid;
   border-radius: 50%;
+}
+
+.min-temp {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .warm {

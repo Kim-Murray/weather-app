@@ -38,7 +38,7 @@ function displayForecast(response) {
       <img class="prediction-icon" src="http://openweathermap.org/img/wn/${
         day.weather[0].icon
       }@2x.png" alt="Weather icon"/>
-      <h4>${minTemp}°C/${maxTemp}°C</h4>
+      <h4><span class="min-temp">${minTemp}°C</span>/${maxTemp}°C</h4>
       </div>
   `;
       maxTemps.push(maxTemp);
@@ -97,7 +97,7 @@ function weather(response) {
   let humidity = Math.round(response.data.main.humidity);
   let wind = Math.round(response.data.wind.speed);
   let humidityWind = document.querySelector("#humidity-wind");
-  humidityWind.innerHTML = `Wind: ${wind} km/hr<br />Humidity: ${humidity}%`;
+  humidityWind.innerHTML = `Wind: ${wind} m/s<br />Humidity: ${humidity}%`;
 
   let time = response.data.dt * 1000;
   let localDayAndTime = document.querySelector("#current-day-time");
@@ -165,25 +165,6 @@ function getCoordinates() {
   navigator.geolocation.getCurrentPosition(displayLocalWeather);
 }
 
-//Unit conversion
-
-function changeTemptoC(event) {
-  event.preventDefault();
-  let displayTemp = document.querySelector(".today-T");
-  tempCelsius.classList.add("active");
-  tempFahr.classList.remove("active");
-  displayTemp.innerHTML = `${Math.round(celsiusTemp)}°C`;
-}
-
-function changeTemptoF(event) {
-  event.preventDefault();
-  let fahrTemp = (celsiusTemp * 9) / 5 + 32;
-  tempFahr.classList.add("active");
-  tempCelsius.classList.remove("active");
-  let displayTemp = document.querySelector(".today-T");
-  displayTemp.innerHTML = `${Math.round(fahrTemp)}°F`;
-}
-
 days = [
   "Sunday",
   "Monday",
@@ -205,12 +186,6 @@ searchCity.addEventListener("submit", city);
 
 let localWeather = document.querySelector("#local-weather");
 localWeather.addEventListener("click", getCoordinates);
-
-let tempCelsius = document.querySelector("#temp-celsius");
-tempCelsius.addEventListener("click", changeTemptoC);
-
-let tempFahr = document.querySelector("#temp-fahr");
-tempFahr.addEventListener("click", changeTemptoF);
 
 //Default display city
 
