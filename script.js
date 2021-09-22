@@ -29,7 +29,7 @@ function displayForecast(response) {
   console.log(forecastDays);
   maxTemps = [];
   forecastDays.forEach(function (day, index) {
-    if (index > 0 && index < 7) {
+    if (index < 6) {
       maxTemp = Math.round(day.temp.max);
       minTemp = Math.round(day.temp.min);
       forecast += `              
@@ -49,8 +49,7 @@ function displayForecast(response) {
   firstRowForecast.innerHTML = forecastHTML;
 
   let icons = document.querySelectorAll(".prediction-icon");
-  console.log(icons);
-  console.log(maxTemps[0]);
+
   icons.forEach((icon, index) => {
     maxTemp = maxTemps[index];
     if (maxTemp >= 20) {
@@ -103,6 +102,18 @@ function weather(response) {
   let time = response.data.dt * 1000;
   let localDayAndTime = document.querySelector("#current-day-time");
   localDayAndTime.innerHTML = formatDateTime(days);
+
+  let todayIconClass = document.querySelector(".today-icon");
+  todayIconClass.classList.remove("warm", "mild", "cold");
+
+  if (currentTemp >= 20) {
+    todayIconClass.classList.add("warm");
+  } else if (currentTemp < 20 && currentTemp > 10) {
+    console.log("mild");
+    todayIconClass.classList.add("mild");
+  } else {
+    todayIconClass.classList.add("cold");
+  }
 
   longitude = response.data.coord.lon;
   latitude = response.data.coord.lat;

@@ -48,6 +48,7 @@ button {
   display: block;
   margin: 0 auto;
   margin-top: 20px;
+  background-color: rgb(241, 244, 245);
 }
 
 /*Search bar*/
@@ -61,6 +62,7 @@ button {
 .today-card {
   text-align: center;
   padding: 10px 5px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
 }
 .card-title-top {
   margin-bottom: 0;
@@ -76,6 +78,16 @@ button {
 
 #humidity-wind {
   font-size: 12px;
+}
+
+.today-icon {
+  text-align: center;
+  font-size: 50px;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  border: 2px solid;
+  border-radius: 50%;
 }
 
 /*Unit Conversion*/
@@ -103,6 +115,7 @@ button {
 
 .prediction {
   text-align: center;
+  padding-bottom: 10px;
 }
 
 .future-day {
@@ -127,8 +140,8 @@ button {
 }
 
 .mild {
-  border-color: rgba(129, 129, 129);
-  background-color: rgba(129, 129, 129, 0.7);
+  border-color: rgb(109, 189, 155);
+  background-color: rgba(109, 189, 155, 0.7);
 }
 
 .cold {
